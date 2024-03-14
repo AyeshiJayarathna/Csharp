@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab2Q4
+{
+    class Product
+    {
+        public string ProductName { get; }
+        public decimal Price { get; }
+
+        public Product(string productName, decimal price)
+        {
+            ProductName = productName;
+            Price = price;
+        }
+        public void DisplayProductDetails()
+        {
+            Console.WriteLine($"Product Name: {ProductName}");
+            Console.WriteLine($"Price: ${Price}");
+        }
+    }
+
+    internal class Program
+    {
+            static void Main(string[] args)
+            {
+
+                Product product1 = new Product("Laptop", 999.99m);
+                Product product2 = new Product("Smartphone", 699.99m);
+
+
+                Console.WriteLine("Product 1 details:");
+                product1.DisplayProductDetails();
+                Console.WriteLine();
+
+                Console.WriteLine("Product 2 details:");
+                product2.DisplayProductDetails();
+            }
+        }
+    }
