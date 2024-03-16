@@ -1,0 +1,85 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace labsheet3.q1
+{
+    class Course
+    {
+       
+        private string courseName;
+        private string instructorName;
+        private double grade;
+
+   
+        public string CourseName { get { return courseName; } }
+        public double Grade
+        {
+            get { return grade; }
+            
+            set
+            {
+                if (value < 0 || value > 100)
+                    throw new ArgumentException("Grade must be between 0 and 100.");
+                grade = value;
+            }
+        }
+
+        // Constructor
+        public Course(string courseName, string instructorName, double grade)
+        {
+            this.courseName = courseName;
+            SetInstructorName(instructorName); 
+            Grade = grade; 
+        }
+
+        public void SetInstructorName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("Instructor name cannot be empty.");
+            instructorName = name;
+        }
+        private string CalculateLetterGrade()
+        {
+            if (Grade >= 90)
+                return "A";
+            else if (Grade >= 80)
+                return "B";
+            else if (Grade >= 70)
+                return "C";
+            else if (Grade >= 60)
+                return "D";
+            else
+                return "F";
+        }
+
+      
+        public void PrintCourseInfo()
+        {
+            Console.WriteLine($"Course Name: {CourseName}");
+            Console.WriteLine($"Instructor Name: {instructorName}");
+            Console.WriteLine($"Letter Grade: {CalculateLetterGrade()}");
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+             
+                Course course = new Course("Mathematics", "Ashi", 85);
+                course.PrintCourseInfo();
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            Console.ReadLine();
+        }
+    }
+    
+}
