@@ -1,0 +1,106 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lab3Q4
+{
+    class Shape
+    {
+
+        protected string shapeType;
+        protected double area;
+
+
+        public string ShapeType
+        {
+            get { return shapeType; }
+        }
+
+        public double Area
+        {
+            get { return area; }
+        }
+
+
+        public Shape()
+        {
+            shapeType = "";
+            area = 0;
+        }
+
+        public virtual void CalculateArea(double val1, double val2)
+        {
+            Console.WriteLine("Area calculation is not implemented for the base shape.");
+        }
+
+        public void DisplayShapeInfo()
+        {
+            Console.WriteLine($"Shape Type: {ShapeType}");
+            Console.WriteLine($"Area: {Area}");
+        }
+    }
+
+    class Rectangle : Shape
+    {
+
+        private double length;
+        private double width;
+
+        public Rectangle(double len, double wid)
+        {
+            shapeType = "Rectangle";
+            length = len;
+            width = wid;
+            CalculateArea(length, width);
+        }
+
+        public override void CalculateArea(double val1, double val2)
+        {
+            area = val1 * val2;
+        }
+
+        public void SetDimensions(double len, double wid)
+        {
+            length = len;
+            width = wid;
+            CalculateArea(length, width);
+        }
+    }
+
+    class Circle : Shape
+    {
+        private double radius;
+
+        public Circle(double rad)
+        {
+            shapeType = "Circle";
+            radius = rad;
+            CalculateArea(radius);
+        }
+        public override void CalculateArea(double val)
+        {
+            area = Math.PI * val * val;
+        }
+
+        public void SetRadius(double rad)
+        {
+            radius = rad;
+            CalculateArea(radius);
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Rectangle rectangle = new Rectangle(5, 3);
+            rectangle.DisplayShapeInfo();
+
+            Circle circle = new Circle(4);
+            circle.DisplayShapeInfo();
+        }
+    }
+}
+
